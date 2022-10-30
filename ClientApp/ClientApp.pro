@@ -7,6 +7,7 @@ QT += quick
 SOURCES += \
         appmain.cpp \
         main.cpp \
+        model/myfilterproxymodel.cpp \
         model/profilelistmodel.cpp
 
 RESOURCES += qml.qrc
@@ -32,4 +33,5 @@ DISTFILES += \
 
 HEADERS += \
     appmain.h \
+    model/myfilterproxymodel.h \
     model/profilelistmodel.h

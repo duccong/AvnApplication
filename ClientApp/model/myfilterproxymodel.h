@@ -3,17 +3,17 @@
 
 #include <QSortFilterProxyModel>
 #include <QObject>
+#include <QDebug>
 
 class MyFilterProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 
-    Q_INVOKABLE void setFilterString(QString str);
-    Q_INVOKABLE void setSortOrder(bool isAcs);
-
 public:
     MyFilterProxyModel();
 
+    Q_INVOKABLE void setFilterString(QString str);
+    Q_INVOKABLE void setSortOrder(bool isAcs);
 
 };
 

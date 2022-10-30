@@ -17,7 +17,6 @@ int ProfileListModel::rowCount(const QModelIndex &parent) const
 
 int ProfileListModel::columnCount(const QModelIndex &parent) const
 {
-    qDebug() << "column: ";
     return 2;
 }
 
@@ -50,8 +49,8 @@ QVariant ProfileListModel::headerData(int section, Qt::Orientation orientation, 
     {
         switch (section)
         {
-        case -1:
-            return QString("ID");
+        // case -1:
+            // return QString("ID");
         case 0:
             return QString("Name");
         case 1:

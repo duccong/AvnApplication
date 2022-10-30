@@ -13,7 +13,7 @@ Item {
     property bool isSelected: false
     Rectangle {
         anchors.fill: rowData
-        color: "BLUE"
+        color: Qt.lighter("#6bdce4", 0.8)
         visible: isSelected
     }
 

@@ -22,6 +22,10 @@ Item {
             id: searchBar
             width: parent.width
             height: 50
+            onEditTextChanged: {
+                console.log("Searching: " + text)
+                filteredModel.setFilterString(text)
+            }
         }
 
         ListView {
@@ -42,8 +46,8 @@ Item {
             }
 
 
-            // model: filteredModel//profileListModel
-            model: profileListModel
+            model: filteredModel//profileListModel
+            // model: profileListModel
 
             delegate: DescriptionProfile {
                 implicitWidth: tableView.width

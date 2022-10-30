@@ -7,6 +7,7 @@ MyFilterProxyModel::MyFilterProxyModel()
 
 void MyFilterProxyModel::setFilterString(QString str)
 {
+    qDebug()<< "setFilterString: " << str.toLocal8Bit().data();
     this->setFilterCaseSensitivity(Qt::CaseInsensitive);
     this->setFilterFixedString(str);
 }

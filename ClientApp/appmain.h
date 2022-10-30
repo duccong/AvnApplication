@@ -14,8 +14,9 @@ public:
 
 private:
     QQmlApplicationEngine m_qmlEngine;
-    QQmlContext *m_qmlContext;
-    QObject *m_rootObject;
+    MyFilterProxyModel *m_myFilterProxyModel = nullptr;
+    QQmlContext *m_qmlContext = nullptr;
+    QObject *m_rootObject = nullptr;
 
     void initialize();
 signals:

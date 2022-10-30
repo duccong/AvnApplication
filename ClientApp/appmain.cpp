@@ -19,14 +19,14 @@ void AppMain::initialize()
     profileList->addData(c);
     profileList->addData(d);
 
-    MyFilterProxyModel myFilterProxyModel;
-    myFilterProxyModel.setSourceModel(profileList);
-    myFilterProxyModel.setFilterRole(ProfileListModel::Name);
-    myFilterProxyModel.setSortRole(ProfileListModel::Name);
+    m_myFilterProxyModel = new MyFilterProxyModel();
+    m_myFilterProxyModel->setSourceModel(profileList);
+    m_myFilterProxyModel->setFilterRole(ProfileListModel::Name);
+    m_myFilterProxyModel->setSortRole(ProfileListModel::Name);
 
 
     m_qmlContext->setContextProperty("profileListModel", profileList);
-    m_qmlContext->setContextProperty("filteredModel", &myFilterProxyModel);
+    m_qmlContext->setContextProperty("filteredModel", m_myFilterProxyModel);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     m_qmlEngine.load(url);
