@@ -21,7 +21,7 @@ Window {
             source: "qrc:/qmlSource/components/DetailProfile.qml"
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.preferredHeight: 0.6
+            Layout.preferredHeight: 0.5
             onLoaded: {
                 console.log("DetailComponent is loaded")
             }
@@ -31,8 +31,8 @@ Window {
             id: loaderListMember
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.preferredHeight: 0.4
-            source: "qrc:/qmlSource/components/ListViewWithSearch.qml"
+            Layout.preferredHeight: 0.5
+            source: "qrc:/qmlSource/components/ListProfile.qml"
             onLoaded: {
                 console.log("ListMemberComponent is loaded")
                 item.anchors.fill = loaderListMember

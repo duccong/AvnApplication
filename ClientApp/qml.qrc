@@ -3,7 +3,7 @@
         <file>main.qml</file>
         <file>qmlSource/common/Nulo.qml</file>
         <file>qmlSource/components/DetailProfile.qml</file>
-        <file>qmlSource/components/ListViewWithSearch.qml</file>
+        <file>qmlSource/components/ListProfile.qml</file>
         <file>qmlSource/delegates/DetailSkills.qml</file>
         <file>imageSource/Assembly.png</file>
         <file>imageSource/Debug.png</file>
@@ -12,5 +12,7 @@
         <file>imageSource/Star.png</file>
         <file>imageSource/System.png</file>
         <file>qmlSource/common/BorderButton.qml</file>
+        <file>qmlSource/common/SearchBar.qml</file>
+        <file>qmlSource/delegates/DescriptionProfile.qml</file>
     </qresource>
 </RCC>

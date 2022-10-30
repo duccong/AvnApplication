@@ -7,7 +7,7 @@ Item {
     property alias bg: background
     property alias content: content
 
-    signal clicked()
+    signal mouseClicked()
 
     Rectangle {
         id: background
@@ -31,7 +31,8 @@ Item {
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            clicked()
+            console.log("BorderButton.Clicked")
+            mouseClicked()
         }
     }
 }

@@ -5,7 +5,9 @@ QT += quick
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        main.cpp
+        appmain.cpp \
+        main.cpp \
+        model/profilelistmodel.cpp
 
 RESOURCES += qml.qrc
 
@@ -27,3 +29,7 @@ DISTFILES += \
     imageSource/QML.png \
     imageSource/Star.png \
     imageSource/System.png
+
+HEADERS += \
+    appmain.h \
+    model/profilelistmodel.h

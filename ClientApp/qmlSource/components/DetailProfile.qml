@@ -17,25 +17,15 @@ Item {
         Nulo {
 
         }
-
-        Text {
+        Loader {
+            id: loaderName
             Nulo {
 
             }
-
-            id: txtName
             Layout.fillHeight: true
             Layout.fillWidth: true
             Layout.preferredHeight: 0.2
-
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            font {
-                bold: true
-                pixelSize: 24
-            }
-
-            text: "Your name!!!"
+            sourceComponent: textField
         }
 
         ListView {
@@ -63,10 +53,47 @@ Item {
 
             content.text : "REFESH"
             content.font.bold: true
+            onMouseClicked: {
+                forceActiveFocus()
+            }
         }
 
     }
 
+
+    Component {
+        id: textField
+        TextField {
+            id: txtName
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.preferredHeight: 0.2
+
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            font {
+                pixelSize: 18
+            }
+            text: "Your name!!!"
+        }
+    }
+
+    Component {
+        id: text
+        Text {
+            id: txtName
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.preferredHeight: 0.2
+
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            font {
+                pixelSize: 18
+            }
+            text: "Your name!!!"
+        }
+    }
 
     Component.onCompleted: {
         console.log("listView: onCompleted")

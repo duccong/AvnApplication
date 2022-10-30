@@ -12,14 +12,14 @@ Item {
         anchors.fill: parent
         anchors.margins: 5
         anchors.verticalCenter: parent.verticalCenter
-        Nulo {
+        // Nulo {
 
-        }
+        // }
 
         Image {
-            Nulo {
+            // Nulo {
 
-            }
+            // }
 
             // Layout.fillHeight: true
             Layout.fillWidth: true
@@ -34,25 +34,27 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            text: "Skill??"
+            text: "Skill of " + model.name
             font.pixelSize: 18
         }
 
-        Text {
-            // Layout.fillHeight: true
+        Loader {
             Layout.fillWidth: true
             Layout.preferredWidth: 0.2
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
+            sourceComponent: textField
 
-            text: "-/-"
-            font.pixelSize: 18
+            // horizontalAlignment: Text.AlignHCenter
+            // verticalAlignment: Text.AlignVCenter
+
+            // text: "-/-"
+            // font.pixelSize: 18
         }
 
-        Image {
-            Nulo {
 
-            }
+        Image {
+            // Nulo {
+
+            // }
 
             // Layout.fillHeight: true
             Layout.fillWidth: true
@@ -60,5 +62,30 @@ Item {
             source: "../../imageSource/Star.png"
         }
     }
+
+    Component {
+        id: textField
+        TextField {
+            // Layout.fillHeight: true
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+
+            text: "-"
+            font.pixelSize: 18
+        }
+    }
+
+    Component {
+        id: text
+        Text {
+            // Layout.fillHeight: true
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+
+            text: "-/-"
+            font.pixelSize: 18
+        }
+    }
+
 
 }
