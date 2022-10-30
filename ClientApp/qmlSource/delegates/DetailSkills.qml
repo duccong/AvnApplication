@@ -6,7 +6,7 @@ import "../common"
 
 Item {
     width: parent.width
-    height: 70
+    height: 50
     // anchors.verticalCenter: parent.verticalCenter
     RowLayout {
         anchors.fill: parent

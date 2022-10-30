@@ -14,10 +14,14 @@ void AppMain::initialize()
     ProfileModel b(3, "3 three", 3);
     ProfileModel c(6, "six two", 6);
     ProfileModel d(4, "4 four", 4);
+    ProfileModel e(4, "e4 four", 2);
+    ProfileModel f(4, "f4 four", 1);
     profileList->addData(a);
     profileList->addData(b);
     profileList->addData(c);
     profileList->addData(d);
+    profileList->addData(e);
+    profileList->addData(f);
 
     m_myFilterProxyModel = new MyFilterProxyModel();
     m_myFilterProxyModel->setSourceModel(profileList);

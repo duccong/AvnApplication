@@ -14,5 +14,6 @@
         <file>qmlSource/common/BorderButton.qml</file>
         <file>qmlSource/common/SearchBar.qml</file>
         <file>qmlSource/delegates/DescriptionProfile.qml</file>
+        <file>qmlSource/common/CircleProgress.qml</file>
     </qresource>
 </RCC>

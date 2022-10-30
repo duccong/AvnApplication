@@ -17,6 +17,7 @@ Item {
     }
 
     Column {
+        visible: !circleProgress.visible
         anchors.fill: parent
         SearchBar {
             id: searchBar
@@ -96,6 +97,15 @@ Item {
         }
     }
 
+    CircleProgress {
+        id: circleProgress
+        width: 100
+        height: 100
+        anchors.centerIn: parent
+
+        totalIndex: 360
+        isAnimation: true
+    }
 
     Component.onCompleted: {
         console.log("listView: onCompleted")

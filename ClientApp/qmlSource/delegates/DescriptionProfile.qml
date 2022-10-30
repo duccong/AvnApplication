@@ -8,7 +8,7 @@ import "../delegates"
 Item {
     id: container
     width: parent.width
-    height: 70
+    height: 50
 
     property bool isSelected: false
     Rectangle {
