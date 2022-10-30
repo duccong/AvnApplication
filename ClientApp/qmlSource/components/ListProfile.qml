@@ -42,6 +42,7 @@ Item {
             }
 
 
+            // model: filteredModel//profileListModel
             model: profileListModel
 
             delegate: DescriptionProfile {

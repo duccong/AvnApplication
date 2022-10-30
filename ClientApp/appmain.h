@@ -4,6 +4,7 @@
 #include <QQmlContext>
 #include <QObject>
 #include <model/profilelistmodel.h>
+#include <model/myfilterproxymodel.h>
 
 class AppMain : public QObject
 {

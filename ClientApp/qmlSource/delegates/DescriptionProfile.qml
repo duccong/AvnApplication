@@ -38,7 +38,7 @@ Item {
                 pixelSize: 18
             }
 
-            text: "Your name!!!"
+            text: model.name
             color: isSelected ? "WHITE" : "BLACK"
         }
 
@@ -54,7 +54,7 @@ Item {
                 pixelSize: 18
             }
 
-            text: "---"
+            text: model.averange
             color: isSelected ? "WHITE" : "BLACK"
         }
     }
