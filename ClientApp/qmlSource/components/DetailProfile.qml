@@ -75,7 +75,7 @@ Item {
                 pixelSize: 24
                 bold: true
             }
-            text: "Your name!!!"
+            text: detailProfileModel.name
         }
     }
 

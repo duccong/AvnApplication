@@ -10,15 +10,23 @@
 #include <../ServerApp/lib/mqmanager.h>
 #include <../ServerApp/lib/shmmanager.h>
 #include <interface/serverinterface.h>
+#include <model/detailprofilemodel.h>
 
 class AppMain : public QObject
 {
     Q_OBJECT
-public:
-
+private:
     explicit AppMain(QObject *parent = nullptr);
 
 public:
+    static AppMain* instance() {
+       static AppMain * app = nullptr;
+       if (app == nullptr) {
+           app = new AppMain();
+       }
+       return app;
+    }
+
     Q_INVOKABLE void qmlCommand(QVariant cmd, QVariant opt);
 
 private:
@@ -27,6 +35,7 @@ private:
     QQmlContext *m_qmlContext = nullptr;
     QObject *m_rootObject = nullptr;
     ServerInterface * m_service = nullptr;
+    DetailProfileModel *m_detailProfile = nullptr;
 
     void initialize();
     void initSignalSlot();

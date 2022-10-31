@@ -12,6 +12,7 @@ AppMain::AppMain(QObject *parent)
 void AppMain::initialize()
 {
     m_qmlContext = m_qmlEngine.rootContext();
+    // Init model
     ProfileListModel *profileList = new ProfileListModel();
     ProfileModel a(5, "5 five", 5);
     ProfileModel b(3, "3 three", 3);
@@ -31,9 +32,12 @@ void AppMain::initialize()
     m_myFilterProxyModel->setFilterRole(ProfileListModel::Name);
     m_myFilterProxyModel->setSortRole(ProfileListModel::Name);
 
+    m_detailProfile = new DetailProfileModel();
+    m_detailProfile->setName("Loading");
 
     m_qmlContext->setContextProperty("profileListModel", profileList);
     m_qmlContext->setContextProperty("filteredModel", m_myFilterProxyModel);
+    m_qmlContext->setContextProperty("detailProfileModel", m_detailProfile);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     m_qmlEngine.load(url);

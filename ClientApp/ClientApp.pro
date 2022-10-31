@@ -10,6 +10,7 @@ SOURCES += \
         appmain.cpp \
         interface/serverinterface.cpp \
         main.cpp \
+        model/detailprofilemodel.cpp \
         model/myfilterproxymodel.cpp \
         model/profilelistmodel.cpp
 
@@ -43,5 +44,6 @@ HEADERS += \
     ../ServerApp/lib/shmmanager.h \
     appmain.h \
     interface/serverinterface.h \
+    model/detailprofilemodel.h \
     model/myfilterproxymodel.h \
     model/profilelistmodel.h

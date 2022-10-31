@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     qDebug() << "#### INIT";
-    AppMain appMain;
+    AppMain *appMain = AppMain::instance();
 
 /*
     QQmlApplicationEngine engine;
