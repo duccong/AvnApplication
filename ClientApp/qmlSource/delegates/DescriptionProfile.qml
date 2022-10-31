@@ -7,7 +7,7 @@ import "../delegates"
 
 Item {
     id: container
-    width: parent.width
+    width: 540//parent.width
     height: 50
 
     property bool isSelected: false

@@ -22,3 +22,23 @@ void MyFilterProxyModel::setSortOrder(bool isAcs)
 
 }
 
+void MyFilterProxyModel::itemClicked(int _index)
+{
+    int row = mapToSource(index(_index, 0)).row();
+    qDebug() << "Item clicked: " << _index << " at model " << row;
+    printDetail(_index);
+    Server::DetailProfile profile;
+    ServerInterface::instance()->getDetailProfileSync(profile, row);
+    qDebug() << "Got information: " << profile.name;
+
+
+}
+
+void MyFilterProxyModel::printDetail(int _index)
+{
+    // ge
+    // int iModel = mapToSource(index(_index, 0)).row();
+    qDebug() << "details of " << sourceModel()->data(mapToSource(index(_index,0)), ProfileListModel::Name).toString()
+             << " - Averange: " << sourceModel()->data(mapToSource(index(_index,0)), ProfileListModel::Averange).toFloat();
+}
+

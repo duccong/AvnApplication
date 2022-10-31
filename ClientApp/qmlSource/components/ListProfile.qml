@@ -57,10 +57,11 @@ Item {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        console.log("Clicked: " + index)
+                        // console.log("Clicked: " + index)
                         forceActiveFocus()
                         container.itemClicked(index)
                         tableView.indexSelected = index
+                        filteredModel.itemClicked(index)
                     }
                 }
             }

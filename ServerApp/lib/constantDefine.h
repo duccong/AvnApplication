@@ -9,6 +9,8 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <errno.h>
+#include <map>
+#include <list>
 
 #define QUEUE_PERMS ((int)(0660))
 #define QUEUE_MAXMSG  16 /* Maximum number of messages. */
@@ -22,5 +24,28 @@
 #define KEY_SHM 0x01
 #define SEGMENT_SIZE 0xff // 256 bytes
 #define NAME_SHM "s"
+
+namespace Server {
+    enum SKILL {
+        E_SKILL_DEFAULT = 0,
+        E_SKILL_CPP,
+        E_SKILL_OPENGL,
+        E_SKILL_ASSEMBLY,
+        E_SKILL_JS,
+        E_SKILL_QML
+    };
+
+    struct DetailProfile
+    {
+        int id;
+        char name[20];
+        std::map<SKILL, char[20]> mapSkill;
+    };
+
+    struct ListProfile
+    {
+        std::list<DetailProfile> listProfile;
+    };
+}
 
 #endif // CONSTANTDEFINE_H

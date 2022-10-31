@@ -1,10 +1,13 @@
 #include "appmain.h"
 
+
 AppMain::AppMain(QObject *parent)
     : QObject{parent}
 {
     initialize();
+    initServerInterface();
 }
+
 
 void AppMain::initialize()
 {
@@ -36,4 +39,28 @@ void AppMain::initialize()
     m_qmlEngine.load(url);
 
     m_rootObject = m_qmlEngine.rootObjects().at(0);
+}
+
+void AppMain::initSignalSlot()
+{
+    qDebug() << "#### Init sigal/slot";
+    if (m_rootObject) {
+
+    } else {
+        qWarning () << "Root object is null";
+    }
+
+}
+
+void AppMain::initServerInterface()
+{
+    if (m_service == nullptr) {
+        m_service = ServerInterface::instance();
+    }
+
+}
+
+void AppMain::qmlCommand(QVariant cmd, QVariant opt)
+{
+
 }

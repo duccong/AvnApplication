@@ -4,6 +4,8 @@
 #include <QSortFilterProxyModel>
 #include <QObject>
 #include <QDebug>
+#include "profilelistmodel.h"
+#include "interface/serverinterface.h"
 
 class MyFilterProxyModel : public QSortFilterProxyModel
 {
@@ -14,7 +16,10 @@ public:
 
     Q_INVOKABLE void setFilterString(QString str);
     Q_INVOKABLE void setSortOrder(bool isAcs);
+    Q_INVOKABLE void itemClicked(int index);
 
+private:
+    void printDetail(int index);
 };
 
 #endif // MYFILTERPROXYMODEL_H
