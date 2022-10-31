@@ -12,7 +12,9 @@ SOURCES += \
         main.cpp \
         model/detailprofilemodel.cpp \
         model/myfilterproxymodel.cpp \
-        model/profilelistmodel.cpp
+        model/profilelistmodel.cpp \
+        model/skilllistmodel.cpp \
+        utils/appdefines.cpp
 
 RESOURCES += qml.qrc
 
@@ -46,4 +48,6 @@ HEADERS += \
     interface/serverinterface.h \
     model/detailprofilemodel.h \
     model/myfilterproxymodel.h \
-    model/profilelistmodel.h
+    model/profilelistmodel.h \
+    model/skilllistmodel.h \
+    utils/appdefines.h

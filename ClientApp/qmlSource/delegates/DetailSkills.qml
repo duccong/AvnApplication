@@ -8,6 +8,10 @@ Item {
     width: parent.width
     height: 50
     // anchors.verticalCenter: parent.verticalCenter
+    property alias skillImg: skillImg.source
+    property alias skillName: skill.text
+    property int skillPoint: 0//.item.text
+    property alias evaluateImg: evaluateImg.source
     RowLayout {
         anchors.fill: parent
         anchors.margins: 5
@@ -22,6 +26,8 @@ Item {
             // }
 
             // Layout.fillHeight: true
+            id: skillImg
+            property int id: 0
             Layout.fillWidth: true
             Layout.preferredWidth: 0.15
             source: "../../imageSource/Star.png"
@@ -29,6 +35,7 @@ Item {
 
         Text {
             // Layout.fillHeight: true
+            id: skill
             Layout.fillWidth: true
             Layout.preferredWidth: 0.5
             horizontalAlignment: Text.AlignHCenter
@@ -39,6 +46,7 @@ Item {
         }
 
         Loader {
+            id: pointLoader
             Layout.fillWidth: true
             Layout.preferredWidth: 0.2
             sourceComponent: textField
@@ -57,6 +65,7 @@ Item {
             // }
 
             // Layout.fillHeight: true
+            id: evaluateImg
             Layout.fillWidth: true
             Layout.preferredWidth: 0.15
             source: "../../imageSource/Star.png"
@@ -70,7 +79,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            text: "-"
+            text: point + "/5"
             font.pixelSize: 18
         }
     }
@@ -82,7 +91,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            text: "-/-"
+            text: point + "/5"
             font.pixelSize: 18
         }
     }

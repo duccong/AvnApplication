@@ -11,6 +11,7 @@
 #include <../ServerApp/lib/shmmanager.h>
 #include <interface/serverinterface.h>
 #include <model/detailprofilemodel.h>
+#include <utils/appdefines.h>
 
 class AppMain : public QObject
 {

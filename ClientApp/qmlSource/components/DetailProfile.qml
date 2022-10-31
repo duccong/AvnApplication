@@ -39,9 +39,9 @@ Item {
             Layout.preferredHeight: 0.7
             clip: true
 
-            model: 10
+            model: detailProfileModel.skillList
             delegate: DetailSkills {
-
+                skillName: model.id
             }
         }
 
