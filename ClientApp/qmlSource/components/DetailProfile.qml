@@ -72,7 +72,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             font {
-                pixelSize: 18
+                pixelSize: 24
+                bold: true
             }
             text: "Your name!!!"
         }
@@ -89,7 +90,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             font {
-                pixelSize: 18
+                pixelSize: 24
+                bold: true
             }
             text: "Your name!!!"
         }
