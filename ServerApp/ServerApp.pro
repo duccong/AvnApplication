@@ -6,6 +6,7 @@ CONFIG -= qt
 SOURCES += \
         clienttest.cpp \
         lib/mqmanager.cpp \
+        lib/shmmanager.cpp \
         main.cpp \
         servermain.cpp
 
@@ -16,4 +17,5 @@ HEADERS += \
     clienttest.h \
     lib/constantDefine.h \
     lib/mqmanager.h \
+    lib/shmmanager.h \
     servermain.h

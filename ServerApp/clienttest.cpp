@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include "lib/constantDefine.h"
 #include "lib/mqmanager.h"
+#include "lib/shmmanager.h"
 #include "clienttest.h"
 
 using namespace std;
@@ -27,5 +28,10 @@ void ClientTest::sendMsg(char *msg)
     mqManager.sendMQueue(mqManager.createMessage(1, msg));
     mqManager.setInterruptHandler();
     mqManager.receiveMQueue();
+
+    ShmManager shmManager;
+    char *data = nullptr;
+    data = shmManager.readShm();
+    cout << "Readed: " << data;
     // mqManager.closeAndDeleteMQueue();
 }

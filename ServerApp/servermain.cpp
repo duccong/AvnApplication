@@ -5,6 +5,7 @@
 #include "lib/constantDefine.h"
 #include "servermain.h"
 #include "lib/mqmanager.h"
+#include "lib/shmmanager.h"
 
 using namespace std;
 
@@ -47,6 +48,11 @@ ServerMain::ServerMain()
         {
             buffer[i] = toupper(buffer[i]);
         }
+
+        //
+        ShmManager shmManager;
+        shmManager.writeShm(buffer);
+
         cout << "Sending message:" << buffer << endl;;
         if (mq_send(mqueue, buffer, attr.mq_msgsize, 0) == -1)
         {
@@ -64,5 +70,7 @@ ServerMain::ServerMain()
 
     // delete mqueue
     mq_unlink(MQ_PATH_CLIENT_USER);
+
+
 
 }
