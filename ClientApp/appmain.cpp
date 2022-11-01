@@ -38,6 +38,7 @@ void AppMain::initialize()
     m_qmlContext->setContextProperty("profileListModel", profileList);
     m_qmlContext->setContextProperty("filteredModel", m_myFilterProxyModel);
     m_qmlContext->setContextProperty("detailProfileModel", m_detailProfile);
+    m_qmlContext->setContextProperty("appMain", this);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     m_qmlEngine.load(url);
@@ -66,5 +67,12 @@ void AppMain::initServerInterface()
 
 void AppMain::qmlCommand(QVariant cmd, QVariant opt)
 {
+    if (cmd == "user") {
+        if (opt == "refesh") {
+            m_service->requestGetListProfile();
+        }
+    } else if (cmd == "admin") {
+
+    }
 
 }

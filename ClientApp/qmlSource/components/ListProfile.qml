@@ -12,13 +12,19 @@ Item {
 
     signal itemClicked(var index)
 
-    Nulo {
-
-    }
-
     Column {
-        visible: !circleProgress.visible
         anchors.fill: parent
+
+        BorderButton {
+            anchors.horizontalCenter: parent.horizontalCenter
+            content.text : isAdmin ? "UPDATE" : "REFESH"
+            content.font.bold: true
+            onMouseClicked: {
+                forceActiveFocus()
+                circleProgress.startAnimation();
+            }
+        }
+
         SearchBar {
             id: searchBar
             width: parent.width
@@ -34,19 +40,17 @@ Item {
             property var columnWidths: [540 * 0.7, 540 * 0.3]
             property int indexSelected: -1
 
+            visible: !circleProgress.visible
             width : container.implicitWidth//parent.width
             height: parent.height - searchBar.height
 
             topMargin: columnsHeader.implicitHeight
+            leftMargin: 15
+
             anchors.horizontalCenter: parent.horizontalCenter
             // columnWidthProvider: function (column) { return columnWidths[column]; }
             // rowHeightProvider: function (column) { return 70; }
             clip: true
-            Nulo {
-
-            }
-
-
             model: filteredModel//profileListModel
             // model: profileListModel
 
@@ -76,14 +80,11 @@ Item {
 
             Row {
                 id: columnsHeader
+                leftPadding: 15
                 z: 3
                 Repeater {
                     model: 2
                     Text {
-                        // Nulo {
-
-                        // }
-
                         width: tableView.columnWidths[modelData]
                         text: tableView.model.headerData(modelData, Qt.Horizontal)
                         color: "BLACK"

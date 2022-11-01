@@ -24,6 +24,12 @@ void ServerInterface::getDetailProfileSync(Server::DetailProfile &profile, int i
     return;
 }
 
+void ServerInterface::requestGetListProfile()
+{
+    qDebug() << "requestGetListProfile";
+
+}
+
 void ServerInterface::initConnection()
 {
     qDebug() << "##### Init connection";

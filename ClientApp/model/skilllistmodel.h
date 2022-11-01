@@ -9,11 +9,13 @@ class SkillModel {
 private:
     AppDefines::E_SKILL_ID m_id;
     float m_point;
+    QString m_name;
 
 public:
     SkillModel(AppDefines::E_SKILL_ID id, float _point) {
         this->m_id = id;
         this->m_point = _point;
+        this->m_name = AppDefines::skillIdToStr(id);
     }
 
     AppDefines::E_SKILL_ID id() {
@@ -23,6 +25,10 @@ public:
     float point() {
         return m_point;
     }
+
+    QString name() {
+        return m_name;
+    }
 };
 
 class SkillListModel : public QAbstractListModel
@@ -30,8 +36,9 @@ class SkillListModel : public QAbstractListModel
     Q_OBJECT
 public:
     enum Roles {
-        IdSkill = Qt::UserRole + 1,
-        Point
+        Id = Qt::UserRole + 1,
+        Point,
+        Name
     };
 
     explicit SkillListModel(QObject *parent = nullptr);

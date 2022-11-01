@@ -15,5 +15,14 @@
         <file>qmlSource/common/SearchBar.qml</file>
         <file>qmlSource/delegates/DescriptionProfile.qml</file>
         <file>qmlSource/common/CircleProgress.qml</file>
+        <file>imageSource/icons1.png</file>
+        <file>imageSource/icons5.png</file>
+        <file>imageSource/icons3.png</file>
+        <file>imageSource/icons4.png</file>
+        <file>imageSource/icons0.png</file>
+        <file>imageSource/icons2.png</file>
+        <file>imageSource/icons8.png</file>
+        <file>imageSource/icons-done.png</file>
+        <file>imageSource/icons-close.png</file>
     </qresource>
 </RCC>

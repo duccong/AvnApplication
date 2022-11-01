@@ -24,11 +24,14 @@ QVariant SkillListModel::data(const QModelIndex &index, int role) const
     }
     SkillModel model = m_skillList.at(index.row());
     switch (role) {
-    case IdSkill:
+    case Id:
         return model.id();
         break;
     case Point:
         return model.point();
+        break;
+    case Name:
+        return model.name();
         break;
     default:
         break;
@@ -39,7 +42,8 @@ QVariant SkillListModel::data(const QModelIndex &index, int role) const
 QHash<int, QByteArray> SkillListModel::roleNames() const
 {
     QHash<int ,QByteArray> roles;
-    roles[IdSkill] = "id";
+    roles[Id] = "id";
     roles[Point] = "point";
+    roles[Name] = "name";
     return roles;
 }

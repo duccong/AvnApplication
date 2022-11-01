@@ -19,9 +19,13 @@ void DetailProfileModel::setName(const QString &newName)
     SkillModel s(AppDefines::E_SKILL_OPENGL, 4);
     SkillModel s1(AppDefines::E_SKILL_ASSEMBLY, 1);
     SkillModel s2(AppDefines::E_SKILL_QML, 3);
+    SkillModel s3(AppDefines::E_SKILL_CPP, 4);
+    SkillModel s4(AppDefines::E_SKILL_JS, 1);
     m_skillList->addData(s);
     m_skillList->addData(s1);
     m_skillList->addData(s2);
+    m_skillList->addData(s3);
+    m_skillList->addData(s4);
     emit onNameChanged();
 }
 

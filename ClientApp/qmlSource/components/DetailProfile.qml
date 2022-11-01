@@ -14,25 +14,15 @@ Item {
         width: parent.width * 0.8
         height: parent.height
         anchors.centerIn: parent
-        Nulo {
-
-        }
         Loader {
             id: loaderName
-            Nulo {
-
-            }
             Layout.fillHeight: true
             Layout.fillWidth: true
             Layout.preferredHeight: 0.2
-            sourceComponent: textField
+            sourceComponent: isAdmin ? textField : text
         }
 
         ListView {
-            Nulo {
-
-            }
-
             id: listSkills
             Layout.fillHeight: true
             Layout.fillWidth: true
@@ -41,23 +31,11 @@ Item {
 
             model: detailProfileModel.skillList
             delegate: DetailSkills {
-                skillName: model.id
+                skillId: model.id
+                skillName: model.name
+                skillPoint: model.point
             }
         }
-
-        BorderButton {
-            Layout.alignment: Qt.AlignHCenter
-            Layout.fillHeight: true
-            // Layout.fillWidth: true
-            Layout.preferredHeight: 0.1
-
-            content.text : "REFESH"
-            content.font.bold: true
-            onMouseClicked: {
-                forceActiveFocus()
-            }
-        }
-
     }
 
 

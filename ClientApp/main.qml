@@ -10,18 +10,17 @@ Window {
     height: 810
     visible: true
     title: qsTr("AVN applications")
+    property bool isAdmin: false // TODO: move it to model
 
     ColumnLayout {
-        Nulo {
-
-        }
         anchors.fill: parent
         Loader {
             id: loaderDetail
             source: "qrc:/qmlSource/components/DetailProfile.qml"
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.preferredHeight: 0.5
+            Layout.preferredHeight: 0.4
+            active: !loadingScreen.visible
             onLoaded: {
                 console.log("DetailComponent is loaded")
             }
@@ -31,13 +30,38 @@ Window {
             id: loaderListMember
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.preferredHeight: 0.5
+            Layout.preferredHeight: 0.6
+            active: !loadingScreen.visible
             source: "qrc:/qmlSource/components/ListProfile.qml"
             onLoaded: {
                 console.log("ListMemberComponent is loaded")
                 item.anchors.fill = loaderListMember
             }
         }
+    }
+
+    Rectangle {
+        id: loadingScreen
+        anchors.fill: parent
+        color: "BLUE"
+        opacity: 0.6
+        Column {
+            BorderButton {
+                content.text: "USER"
+                onMouseClicked: {
+                    loadingScreen.visible = false
+                }
+            }
+
+            BorderButton {
+                content.text: "ADMIN"
+                onMouseClicked: {
+                    isAdmin = true
+                    loadingScreen.visible = false
+                }
+            }
+        }
+
     }
 
 }

@@ -8,34 +8,30 @@ Item {
 
     signal editTextChanged(var text)
 
-    Nulo {
-
-    }
-
     RowLayout {
         anchors.fill: parent
         anchors.margins: 10
         Text {
-            Nulo {
-
-            }
-
             text: "Search Name:"
             Layout.fillWidth: true
             Layout.preferredWidth: 0.3
 
-            font.pixelSize: 18
+            font {
+                pixelSize: 18
+                bold: true
+            }
         }
 
         TextField {
-            Nulo {
-
-            }
             Layout.fillWidth: true
             Layout.preferredWidth: 0.7
             // Layout.rightMargin: 15
             placeholderText: "Input string..."
-            font.pixelSize: 18
+            font {
+                pixelSize: 18
+                bold: true
+            }
+
             color: "BLACK"
 
             onTextChanged: {

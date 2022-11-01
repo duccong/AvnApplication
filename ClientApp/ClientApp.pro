@@ -38,7 +38,20 @@ DISTFILES += \
     imageSource/Documenting.png \
     imageSource/QML.png \
     imageSource/Star.png \
-    imageSource/System.png
+    imageSource/System.png \
+    imageSource/icons-close .png \
+    imageSource/icons-close .png \
+    imageSource/icons-close .png \
+    imageSource/icons-close.png \
+    imageSource/icons-done.png \
+    imageSource/icons0.png \
+    imageSource/icons1.png \
+    imageSource/icons2.png \
+    imageSource/icons3.png \
+    imageSource/icons4.png \
+    imageSource/icons5.png \
+    imageSource/icons6.png \
+    imageSource/icons8.png
 
 HEADERS += \
     ../ServerApp/lib/constantDefine.h \

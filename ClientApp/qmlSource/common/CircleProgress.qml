@@ -8,24 +8,34 @@ Item {
     property real end: -0.5 // -0.5 -> 1.5
     property color bgColor: "#00FF00"
     property int size: width / 4
-    property bool isAnimation: false
+    property alias isAnimation: timer3s.running
     property int duration: 3000
     property real loop: duration/60
     property real step: 2 / loop
+    visible: isAnimation
+
+    // opacity: isAnimation ? 1 : 0
+    // Behavior on opacity {PropertyAnimation {duration: container.duration/2}}
+
+    function startAnimation() {
+        console.log("Start animation: " + isAnimation)
+        if (!isAnimation) {
+            end = start
+            isAnimation = true
+        }
+    }
 
     Timer {
         id: timer3s
         repeat: true
         interval: loop
-        running: isAnimation
+        // running: isAnimation
 
         property int count: -1
         onRunningChanged: {
             console.log("running: " + running)
             if (running) {
                 count = 0
-            } else {
-                container.visible = false
             }
         }
 

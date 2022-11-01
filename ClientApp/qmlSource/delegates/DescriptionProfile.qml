@@ -19,10 +19,6 @@ Item {
 
     RowLayout {
         id: rowData
-        Nulo {
-
-        }
-
         anchors.fill: parent
         anchors.leftMargin: 30
         anchors.rightMargin: 30

@@ -13,7 +13,7 @@
 #include <list>
 
 #define QUEUE_PERMS ((int)(0660))
-#define QUEUE_MAXMSG  16 /* Maximum number of messages. */
+#define QUEUE_MAXMSG  10 /* Maximum number of messages. */
 #define MESSAGE_BUFFER_SIZE 256
 // #define QUEUE_ATTR_INITIALIZER ((struct mq_attr){0, QUEUE_MAXMSG, MESSAGE_BUFFER_SIZE, 0})
 
