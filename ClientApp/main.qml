@@ -11,6 +11,7 @@ Window {
     visible: true
     title: qsTr("AVN applications")
     property bool isAdmin: false // TODO: move it to model
+    property string permissionCmd: isAdmin ? "admin" : "user" // TODO: move it to model
 
     ColumnLayout {
         anchors.fill: parent

@@ -11,6 +11,9 @@
 #include <errno.h>
 #include <map>
 #include <list>
+#include <vector>
+#include <stdio.h>
+#include <iostream>
 
 #define QUEUE_PERMS ((int)(0660))
 #define QUEUE_MAXMSG  10 /* Maximum number of messages. */
@@ -22,8 +25,12 @@
 
 
 #define KEY_SHM 0x01
-#define SEGMENT_SIZE 0xff // 256 bytes
-#define NAME_SHM "s"
+#define SEGMENT_SIZE 1024 // 256 bytes or need larger?
+#define NAME_SHM "/dev/shm"
+
+
+#define DATA_FILE "data.txt"
+#define CEOL ";"
 
 namespace Server {
     enum SKILL {
@@ -39,12 +46,57 @@ namespace Server {
     {
         int id;
         char name[20];
-        std::map<SKILL, char[20]> mapSkill;
+        float averange;
+        std::map<SKILL, int> mapSkill;
+    };
+
+    struct ShortDetailProfile
+    {
+        int id;
+        char name[20];
+        float averange;
     };
 
     struct ListProfile
     {
-        std::list<DetailProfile> listProfile;
+        std::vector<DetailProfile> listProfile;
+
+        std::vector<char> convertToShortArray() {
+            std::vector<char> detail;
+            int sizeList = listProfile.size();
+            detail.resize(size() * sizeof(ShortDetailProfile) + 4); // 4 first byte is using for size of list
+            memcpy(detail.data(), &sizeList, sizeof(int));
+            for (int i = 0; i < listProfile.size(); ++i) {
+                memcpy(detail.data() + 4 + sizeof(ShortDetailProfile) * i, &(listProfile[i]), sizeof(ShortDetailProfile)); // TODO: need improve
+            }
+            return detail;
+        }
+
+        void convertFromShortArray(const char* in) {
+            for (int i = 0; i < 30; i++) {
+                std::cout << (int)*(in+i) << " ";
+            }
+            int sizeList = 0;
+            memcpy(&sizeList, in, sizeof(int));
+            std::cout << "\n sizeList: " << sizeList << std::endl;
+
+            std::vector<char> data;
+            data.resize(sizeList * sizeof(ShortDetailProfile));
+
+            ShortDetailProfile shortList[sizeList];
+            memcpy(shortList, (in + 4),  sizeof(shortList));
+            listProfile.resize(sizeList);
+            listProfile.clear();
+            for (auto item : shortList) {
+                DetailProfile detailProfile;
+                memcpy(&detailProfile, &item, sizeof(ShortDetailProfile));
+                listProfile.push_back(detailProfile);
+            }
+        }
+
+        int size() {
+            return listProfile.size();
+        }
     };
 }
 

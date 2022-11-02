@@ -8,6 +8,7 @@
 #include <QObject>
 #include <QList>
 #include <QDebug>
+#include <interface/serverinterface.h>
 
 class ProfileModel {
 private:
@@ -55,6 +56,10 @@ public:
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+
+    const QList<ProfileModel> &profileList() const;
+    void setProfileList(const QList<ProfileModel> &newProfileList);
+    void setProfileList(const Server::ListProfile &newProfileList);
 
 protected:
     QHash<int, QByteArray> roleNames() const;

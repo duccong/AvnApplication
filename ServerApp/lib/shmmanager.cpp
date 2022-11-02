@@ -7,7 +7,7 @@ ShmManager::ShmManager()
 
 }
 
-void ShmManager::writeShm(char *content)
+void ShmManager::writeShm(char *content, int size)
 {
     int shareId = getShm(KEY_SHM);
     // attach the shared memory
@@ -17,9 +17,14 @@ void ShmManager::writeShm(char *content)
         perror("Shared memory cannot be attached");
         exit(EXIT_FAILURE);
     }
+    if (content == nullptr) {
+        cout << "content is null" << endl;
+    }
+    cout << "Writing: " << content << " - size: " << size << endl;
 
-    memcpy(sharedMemory, content, strlen(content) + 1);
+    memcpy(sharedMemory, content, size);
 
+    cout << "Writed: " << sharedMemory << " - size: " << strlen(sharedMemory)<< endl;
     // detach
     if (shmdt(sharedMemory) == -1) {
         perror("Shared memory cannot be attached");
@@ -32,20 +37,16 @@ char* ShmManager::readShm()
     int shareId = getShm(KEY_SHM);
     // attach the shared memory
     char *sharedMemory = nullptr;
-    char *data = nullptr;
+    static char data[SEGMENT_SIZE] {};
 
-    if ((sharedMemory = (char*)shmat(shareId, NULL, 0)) == nullptr) {
+    if ((sharedMemory = (char*)shmat(shareId, NULL, SHM_RDONLY)) == nullptr) {
         perror("Shared memory cannot be attached");
         exit(EXIT_FAILURE);
     }
 
-    cout << "Reading shared memory: " << sharedMemory << endl;
-    if (data != nullptr) {
-        delete data;
-    }
+    cout << "Reading shared memory: " << sharedMemory  << " - size: " << sizeof (sharedMemory) << endl;
     cout << "Storing data" << endl;
-    data = new char(strlen(sharedMemory) + 1);
-    strcpy(data, sharedMemory);
+    memcpy(data, sharedMemory, sizeof(data));
     cout << "Storing done: " << data << endl;
 
     // detach

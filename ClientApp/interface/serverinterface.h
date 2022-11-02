@@ -22,7 +22,7 @@ public:
         return iServer;
     }
 
-    void getDetailProfileSync(Server::DetailProfile &profile, int id);
+    void getProfileListSync(Server::ListProfile &profile, int id);
     void requestGetListProfile();
 
 signals:

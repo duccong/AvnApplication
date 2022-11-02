@@ -28,7 +28,7 @@ public:
        return app;
     }
 
-    Q_INVOKABLE void qmlCommand(QVariant cmd, QVariant opt);
+    Q_INVOKABLE void qmlCommand(QVariant _cmd, QVariant _opt);
 
 private:
     QQmlApplicationEngine m_qmlEngine;
@@ -36,6 +36,7 @@ private:
     QQmlContext *m_qmlContext = nullptr;
     QObject *m_rootObject = nullptr;
     ServerInterface * m_service = nullptr;
+    ProfileListModel *m_profileListModel = nullptr;
     DetailProfileModel *m_detailProfile = nullptr;
 
     void initialize();

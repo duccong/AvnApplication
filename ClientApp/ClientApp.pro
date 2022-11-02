@@ -14,7 +14,8 @@ SOURCES += \
         model/myfilterproxymodel.cpp \
         model/profilelistmodel.cpp \
         model/skilllistmodel.cpp \
-        utils/appdefines.cpp
+        utils/appdefines.cpp \
+        utils/utilsapp.cpp
 
 RESOURCES += qml.qrc
 
@@ -63,4 +64,5 @@ HEADERS += \
     model/myfilterproxymodel.h \
     model/profilelistmodel.h \
     model/skilllistmodel.h \
-    utils/appdefines.h
+    utils/appdefines.h \
+    utils/utilsapp.h

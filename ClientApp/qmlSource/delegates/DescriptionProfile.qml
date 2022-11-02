@@ -50,7 +50,7 @@ Item {
                 pixelSize: 18
             }
 
-            text: model.averange
+            text: Number(model.averange).toFixed(2)
             color: isSelected ? "WHITE" : "BLACK"
         }
     }

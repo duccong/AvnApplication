@@ -2,7 +2,7 @@
 
 MyFilterProxyModel::MyFilterProxyModel()
 {
-    setSortOrder(false);
+    setSortOrder(true);
 }
 
 void MyFilterProxyModel::setFilterString(QString str)
@@ -27,9 +27,8 @@ void MyFilterProxyModel::itemClicked(int _index)
     int row = mapToSource(index(_index, 0)).row();
     qDebug() << "Item clicked: " << _index << " at model " << row;
     printDetail(_index);
-    Server::DetailProfile profile;
-    ServerInterface::instance()->getDetailProfileSync(profile, row);
-    qDebug() << "Got information: " << profile.name;
+    // ServerInterface::instance()->getProfileListSync(profile, row);
+    // qDebug() << "Got information: " << profile.name;
 
 
 }

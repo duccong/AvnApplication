@@ -1,17 +1,12 @@
-#include <iostream>
-#include <stdio.h>
-#include <time.h>
-#include <ctype.h>
-#include "lib/constantDefine.h"
 #include "servermain.h"
-#include "lib/mqmanager.h"
-#include "lib/shmmanager.h"
 
 using namespace std;
 
 ServerMain::ServerMain()
 {
     cout << "#### Initing server!" << endl;
+    initData();
+#ifndef TEST_MQ
     MQueueManager mqueueManager;
     // mqueue object
     mqd_t mqueue;
@@ -34,7 +29,8 @@ ServerMain::ServerMain()
     }
 
     // recerve message
-    // while (1) {
+#ifndef TEST_WAIT_RECV_MSG
+    while (1) {
         cout << "Waiting for message" << endl;
         if (mq_receive(mqueue, buffer, attr.mq_msgsize, NULL) == -1)
         {
@@ -48,18 +44,55 @@ ServerMain::ServerMain()
         {
             buffer[i] = toupper(buffer[i]);
         }
+#endif
 
-        //
+#ifndef TEST_WRITE_SHM
         ShmManager shmManager;
-        shmManager.writeShm(buffer);
+        //prepare data to sharemem;
+        // char *sByte = new char(m_sSharedProfileList.size() + 1);
+        // strcpy(sByte, m_sSharedProfileList.c_str());
 
+        ShortDetailProfile detail[m_listProfile.size()];
+        // memcpy(detail, m_listProfile.convertToArray(), sizeof(detail));
+        char my_s_bytes[sizeof(detail)];
+        // char *sByte = new char(sizeof(my_s_bytes));
+        // memcpy(my_s_bytes, &m_listProfile, sizeof(my_s_bytes));
+        memcpy(my_s_bytes, &m_listProfile.convertToShortArray()[0], sizeof(detail));
+#endif
+
+#ifndef TEST_READ_SHM
+        auto vec = m_listProfile.convertToShortArray();
+        shmManager.writeShm(vec.data(), vec.size());
+        for (int i = 0; i < 30; i++) {
+            std::cout << (int)*(vec.data() + i)<< " ";
+        }
+        std::cout << std::endl;
+        char * data = shmManager.readShm();
+        for (int i = 0; i < 30; i++) {
+            std::cout << (int)*(data + i) << " ";
+        }
+
+        ShortDetailProfile tmpList[m_listProfile.listProfile.size()];
+        memcpy(tmpList, data+4, sizeof(my_s_bytes));
+        cout << "\n id: " << tmpList[2].id;
+        cout << " - name: " << tmpList[2].name;
+        cout << " - point: " << tmpList[2].averange << endl;
+        Server::ListProfile listProfile;
+        listProfile.convertFromShortArray(data);
+        cout << "ListProfile: " << listProfile.size();
+        for (int i = 0; i < listProfile.size(); i++) {
+            Utils::printfProfile(listProfile.listProfile.at(i));
+        }
+#endif
+
+#ifndef TEST_ACK
         cout << "Sending message:" << buffer << endl;;
         if (mq_send(mqueue, buffer, attr.mq_msgsize, 0) == -1)
         {
             perror("failed to send to Server");
         }
-    // }
-
+    }
+#endif
     // close message
     cout << "Terminating..." << endl;
     if (mq_close(mqueue) == -1)
@@ -70,7 +103,28 @@ ServerMain::ServerMain()
 
     // delete mqueue
     mq_unlink(MQ_PATH_CLIENT_USER);
+#endif
 
 
+}
 
+void ServerMain::initData()
+{
+    cout << "#### init data";
+    m_sSharedProfileList = "";
+    FileManager fileManager;
+    fstream *f = fileManager.openFile(DATA_FILE);
+    string txtData;
+    while (getline(*f, txtData)) {
+        int size = txtData.size();
+            // cout << "size: " << size << endl;
+        if (size > 0 && isdigit((int)txtData[0])) {
+            // cout << " RAW -> " << txtData << endl;
+            DetailProfile p = Utils::strDataToProfile(txtData);
+            m_listProfile.listProfile.push_back(p);
+            string raw = "" + to_string(p.id) + "-" + string(p.name) + ";";
+            m_sSharedProfileList.append(raw);
+        }
+    }
+    fileManager.closeFile();
 }

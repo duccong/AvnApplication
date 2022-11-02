@@ -5,10 +5,12 @@ CONFIG -= qt
 
 SOURCES += \
         clienttest.cpp \
+        lib/filemanager.cpp \
         lib/mqmanager.cpp \
         lib/shmmanager.cpp \
         main.cpp \
-        servermain.cpp
+        servermain.cpp \
+        utils/utils.cpp
 
 LIBS += -lpthread \
         -lrt
@@ -16,6 +18,10 @@ LIBS += -lpthread \
 HEADERS += \
     clienttest.h \
     lib/constantDefine.h \
+    lib/filemanager.h \
     lib/mqmanager.h \
     lib/shmmanager.h \
-    servermain.h
+    servermain.h \
+    utils/utils.h
+
+DISTFILES +=

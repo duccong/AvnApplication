@@ -17,11 +17,12 @@ Item {
 
         BorderButton {
             anchors.horizontalCenter: parent.horizontalCenter
-            content.text : isAdmin ? "UPDATE" : "REFESH"
+            content.text : isAdmin ? "UPDATE" : "REFRESH"
             content.font.bold: true
             onMouseClicked: {
                 forceActiveFocus()
                 circleProgress.startAnimation();
+                appMain.qmlCommand(permissionCmd, "refresh")
             }
         }
 

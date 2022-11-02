@@ -2,6 +2,7 @@
 #include "lib/constantDefine.h"
 #include "clienttest.h"
 #include "servermain.h"
+#include "lib/filemanager.h"
 
 using namespace std;
 
@@ -15,6 +16,9 @@ int main(int argc, char *argv[])
     } else {
         cout << "Servier is running" << endl;
         ServerMain sever;
+        // FileManager fileManager;
+        // fileManager.readFile(DATA_FILE);
+        // fileManager.writeFile(DATA_FILE, DATA_FILE, true);
     }
     return 0;
 }

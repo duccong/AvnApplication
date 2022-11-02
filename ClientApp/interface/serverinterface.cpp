@@ -1,4 +1,5 @@
 #include "serverinterface.h"
+#include "utils/utilsapp.h"
 
 ServerInterface::ServerInterface(QObject *parent) : QObject(parent)
 {
@@ -6,10 +7,10 @@ ServerInterface::ServerInterface(QObject *parent) : QObject(parent)
     initShm();
 }
 
-void ServerInterface::getDetailProfileSync(Server::DetailProfile &profile, int id)
+void ServerInterface::getProfileListSync(Server::ListProfile &profile, int id)
 {
     if (m_shmManager && m_mqManager ) {
-        qDebug() << "getDetailProfileSync";
+        qDebug() << "getProfileListSync";
         m_mqManager->sendMQueue(m_mqManager->createMessage(1, "test"));
         m_mqManager->setInterruptHandler();
         m_mqManager->receiveMQueue();
@@ -17,9 +18,17 @@ void ServerInterface::getDetailProfileSync(Server::DetailProfile &profile, int i
         ShmManager shmManager;
         char *data = nullptr;
         data = m_shmManager->readShm();
-        std::cout << "Readed: " << data;
-        profile.id = id;
-        strcpy(profile.name, data);
+        // Server::ListProfile *listProfile = (struct Server::ListProfile *) data;
+        // qDebug() << "Readed: " << endl;
+        for (int i = 0; i < 30; i++) {
+            std::cout << (int)*(data + i) << " ";
+        }
+        std::cout << std::endl;
+        profile.convertFromShortArray(data);
+        qDebug() << "ListProfile: " << profile.size();
+        for (int i = 0; i < profile.size(); i++) {
+            UtilsApp::printfProfile(profile.listProfile.at(i));
+        }
     }
     return;
 }

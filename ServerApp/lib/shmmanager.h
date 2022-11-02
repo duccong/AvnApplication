@@ -14,7 +14,7 @@ class ShmManager
 {
 public:
     ShmManager();
-    void writeShm(char *content);
+    void writeShm(char *content, int size);
     char* readShm();
     void printShmInfo(int sharedId);
 

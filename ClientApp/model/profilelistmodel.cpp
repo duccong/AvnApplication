@@ -70,3 +70,25 @@ QHash<int, QByteArray> ProfileListModel::roleNames() const
     roles[Averange] = "averange";
     return roles;
 }
+
+const QList<ProfileModel> &ProfileListModel::profileList() const
+{
+    return m_profileList;
+}
+
+void ProfileListModel::setProfileList(const QList<ProfileModel> &newProfileList)
+{
+    m_profileList.clear();
+    m_profileList = newProfileList;
+    emit layoutChanged();
+}
+
+void ProfileListModel::setProfileList(const Server::ListProfile &newProfileList)
+{
+    m_profileList.clear();
+    for (auto profile : newProfileList.listProfile) {
+        ProfileModel tmp(profile.id, profile.name, profile.averange);
+        m_profileList.push_back(tmp);
+    }
+    emit layoutChanged();
+}
