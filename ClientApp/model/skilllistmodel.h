@@ -44,6 +44,7 @@ public:
     explicit SkillListModel(QObject *parent = nullptr);
 
     void addData(const SkillModel& model);
+    void updateListData(const QList<SkillModel>& model);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
 

@@ -9,8 +9,35 @@ ServerMain::ServerMain()
     MQueueManager mqueueManager;
     mqueueManager.openQueue(MQ_PATH_CLIENT_USER);
     while (1) {
-        mqueueManager.receiveMQueue();
-        mqueueManager.createMessage(1, "RES_OK");
+        MMESSAGE msg;
+        mqueueManager.receiveMQueue(msg);
+        cout << "Check msg content: " << msg.content << endl;
+        if (strncmp(GET_PROFILE_LIST_SYNC, msg.content, sizeof(GET_PROFILE_LIST_SYNC)) == 0) {
+            cout << " >>>> GET LIST PROFILE LIST SYNC" << endl;
+            mqueueManager.createMessage(1, MMESSAGE_RESPONSE_OK);
+            // write to SHM
+        } else if (strncmp(GET_PROFILE_DETAIL_SYNC, msg.content, sizeof(GET_PROFILE_DETAIL_SYNC)) == 0) {
+            cout << " >>>> GET LIST PROFILE DETAIL SYNC" << endl;
+            // check ID
+            int id = 0;
+            // Prepare msg content;
+            string content;
+            // TODO: find profile smarter;
+            for (auto &item : m_listProfile.listProfile) {
+                if (item.id == id) {
+                    // found profile
+                    content = item.serializeMapSkill();
+                    break;
+                }
+            }
+            // DetailProfile p = m_listProfile.listProfile.at(0);
+            mqueueManager.createMessage(1, content.c_str());
+
+        } else {
+            cout << " >>>> TBD ... " << endl;
+            mqueueManager.createMessage(1, MMESSAGE_RESPONSE_OK);
+        }
+
         mqueueManager.sendMQueue();
         mqueueManager.setInterruptHandler();
     }

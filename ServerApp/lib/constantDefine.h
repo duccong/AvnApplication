@@ -14,6 +14,8 @@
 #include <vector>
 #include <stdio.h>
 #include <iostream>
+#include <string>
+#include <sstream>
 
 #define QUEUE_PERMS ((int)(0660))
 #define QUEUE_MAXMSG  10 /* Maximum number of messages. */
@@ -32,6 +34,9 @@
 #define DATA_FILE "data.txt"
 #define CEOL ";"
 
+#define GET_PROFILE_LIST_SYNC "getProfileListSync"
+#define GET_PROFILE_DETAIL_SYNC "getProfileDetailSync"
+
 namespace Server {
     enum SKILL {
         E_SKILL_DEFAULT = 0,
@@ -48,6 +53,37 @@ namespace Server {
         char name[20];
         float averange;
         std::map<SKILL, int> mapSkill;
+
+        std::string serializeMapSkill() {
+            std::string str;
+            std::stringstream ss;
+            // template of mapp skill {1:2,5:4}
+            str.push_back('{');
+            for (const auto &item : mapSkill) {
+                // str.push_back();
+                // str.push_back(":");
+                // str.push_back(",");
+                ss << item.first << ":" << item.second << ",";
+            }
+            std::string skills(ss.str());
+            skills.pop_back();
+            str += skills;
+            str.push_back('}');
+            return str;
+        }
+
+        void updateFromSerializeMapSkill(char *in, int size) {
+            // std::string s(in,size);
+            char* ptr = nullptr;
+            ptr = strtok(&in[0], ",");
+            int got = 0;
+            while (ptr != nullptr) {
+                std::cout << ptr << std::endl;
+                mapSkill.insert({(SKILL)((int)ptr[0] - '0')
+                                 , ((int)ptr[2] - '0')}); // TODO: need make it commonly
+                ptr = strtok(NULL, ",");
+            }
+        }
     };
 
     struct ShortDetailProfile

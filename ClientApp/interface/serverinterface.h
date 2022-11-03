@@ -23,6 +23,7 @@ public:
     }
 
     void getProfileListSync(Server::ListProfile &profile, int id);
+    void getProfileDetailSync(Server::DetailProfile &profile, int id );
     void requestGetListProfile();
 
 signals:

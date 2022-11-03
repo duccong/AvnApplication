@@ -37,6 +37,7 @@ void AppMain::initialize()
     m_myFilterProxyModel->setSortRole(ProfileListModel::Name);
 
     m_detailProfile = new DetailProfileModel();
+    m_myFilterProxyModel->setFocusDetailModel(m_detailProfile);
     m_detailProfile->setName("Loading");
 
     qDebug() << "#### setContextProperty";
@@ -79,7 +80,7 @@ void AppMain::qmlCommand(QVariant _cmd, QVariant _opt)
         if (opt == "refresh") {
             // m_service->requestGetListProfile();
             Server::ListProfile profiles;
-            ServerInterface::instance()->getProfileListSync(profiles, 0);
+            ServerInterface::instance()->getProfileListSync(profiles, -1);
             m_profileListModel->setProfileList(profiles);
         }
     } else if (cmd == "admin") {

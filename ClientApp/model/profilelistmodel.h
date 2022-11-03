@@ -34,6 +34,7 @@ public:
     float averange() {
         return m_averange;
     }
+    void setId(int newId);
 };
 
 class ProfileListModel : public QAbstractListModel
@@ -60,6 +61,7 @@ public:
     const QList<ProfileModel> &profileList() const;
     void setProfileList(const QList<ProfileModel> &newProfileList);
     void setProfileList(const Server::ListProfile &newProfileList);
+    void updateProfileListAt(const Server::DetailProfile &detailProfile, int row);
 
 protected:
     QHash<int, QByteArray> roleNames() const;

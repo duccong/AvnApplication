@@ -1,5 +1,4 @@
 #include "mqmanager.h"
-
 using namespace std;
 
 void noop (int interrrupt) {
@@ -104,7 +103,7 @@ void MQueueManager::setInterruptHandler()
     }
 }
 
-void MQueueManager::receiveMQueue()
+void MQueueManager::receiveMQueue(MMESSAGE &msg)
 {
     cout << "Waiting for message" << endl;
     cout << " >>>>> m_queue: " << m_mqueue << endl;
@@ -115,6 +114,7 @@ void MQueueManager::receiveMQueue()
         exit(EXIT_FAILURE);
     }
     cout << "Message received:" << buffer << endl;
+    strcpy(msg.content, buffer);
     cout << " >>>>> m_queue: " << m_mqueue << endl;
 }
 

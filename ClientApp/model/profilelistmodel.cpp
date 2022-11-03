@@ -92,3 +92,10 @@ void ProfileListModel::setProfileList(const Server::ListProfile &newProfileList)
     }
     emit layoutChanged();
 }
+
+void ProfileListModel::updateProfileListAt(const Server::DetailProfile &detailProfile, int row)
+{
+    // TODO
+    // m_profileList.at(0)
+    // emit dataChanged(index(row), index(row));
+}

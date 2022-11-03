@@ -7,6 +7,7 @@
 #include <ctype.h>
 #include "constantDefine.h"
 
+#define MMESSAGE_RESPONSE_OK "respond_OK"
 typedef struct MMESSAGE
 {
     int id = 0;
@@ -20,16 +21,17 @@ public:
     void convertMsgToChar(MMESSAGE msg, char *outMsg);
     MMESSAGE convertCharToMsg(char *msg);
 
-void openQueue(char *mqPath);
+    void openQueue(char *mqPath);
     void createMessage(const int id, const char* content);
     void sendMQueue(const MMESSAGE &msg);
     void sendMQueue();
     void setInterruptHandler();
-    void receiveMQueue();
+    void receiveMQueue(MMESSAGE &msg);
     void closeAndDeleteMQueue();
 
 private:
     MMESSAGE m_message{};
+    MMESSAGE m_messageRcv{};
     char *m_mqPath = nullptr;
     struct mq_attr m_attr;
     mqd_t m_mqueue;

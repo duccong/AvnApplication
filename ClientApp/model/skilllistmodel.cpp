@@ -11,6 +11,13 @@ void SkillListModel::addData(const SkillModel &model)
     m_skillList.append(model);
 }
 
+void SkillListModel::updateListData(const QList<SkillModel> &model)
+{
+    m_skillList.clear();
+    m_skillList = model;
+    emit layoutChanged();
+}
+
 int SkillListModel::rowCount(const QModelIndex &parent) const
 {
     return m_skillList.size();
