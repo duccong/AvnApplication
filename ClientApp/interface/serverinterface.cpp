@@ -11,7 +11,8 @@ void ServerInterface::getProfileListSync(Server::ListProfile &profile, int id)
 {
     if (m_shmManager && m_mqManager ) {
         qDebug() << "getProfileListSync";
-        m_mqManager->sendMQueue(m_mqManager->createMessage(1, "test"));
+        m_mqManager->createMessage(1, "test");
+        m_mqManager->sendMQueue();
         m_mqManager->setInterruptHandler();
         m_mqManager->receiveMQueue();
 

@@ -24,10 +24,10 @@ void ClientTest::sendMsg(char *msg)
     }
 
     MQueueManager mqManager;
-    mqManager.openQueue(MQ_PATH_CLIENT_USER);
-    mqManager.sendMQueue(mqManager.createMessage(1, msg));
-    mqManager.setInterruptHandler();
-    mqManager.receiveMQueue();
+    // mqManager.openQueue(MQ_PATH_CLIENT_USER);
+    // mqManager.sendMQueue(mqManager.createMessage(1, msg));
+    // mqManager.setInterruptHandler();
+    // mqManager.receiveMQueue();
 
     ShmManager shmManager;
     char *data = nullptr;

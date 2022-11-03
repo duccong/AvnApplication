@@ -6,8 +6,15 @@ ServerMain::ServerMain()
 {
     cout << "#### Initing server!" << endl;
     initData();
-#ifndef TEST_MQ
     MQueueManager mqueueManager;
+    mqueueManager.openQueue(MQ_PATH_CLIENT_USER);
+    while (1) {
+        mqueueManager.receiveMQueue();
+        mqueueManager.createMessage(1, "RES_OK");
+        mqueueManager.sendMQueue();
+        mqueueManager.setInterruptHandler();
+    }
+#ifdef TEST_MQ
     // mqueue object
     mqd_t mqueue;
 
@@ -27,17 +34,20 @@ ServerMain::ServerMain()
         perror("Open queue client");
         exit(EXIT_FAILURE);
     }
+    cout << " >>>>> m_queue: " << mqueue << endl;
 
     // recerve message
-#ifndef TEST_WAIT_RECV_MSG
+#ifdef TEST_WAIT_RECV_MSG
     while (1) {
         cout << "Waiting for message" << endl;
+    cout << " >>>>> m_queue: " << mqueue << endl;
         if (mq_receive(mqueue, buffer, attr.mq_msgsize, NULL) == -1)
         {
             perror("Receive");
             exit(EXIT_FAILURE);
         }
         cout << "Received message: " << buffer << endl;
+    cout << " >>>>> m_queue: " << mqueue << endl;
         // sending the acknowledge message
         // making the message all uppercase
         for(int i=0; i < strlen(buffer); ++i)
@@ -46,7 +56,7 @@ ServerMain::ServerMain()
         }
 #endif
 
-#ifndef TEST_WRITE_SHM
+#ifdef TEST_WRITE_SHM
         ShmManager shmManager;
         //prepare data to sharemem;
         // char *sByte = new char(m_sSharedProfileList.size() + 1);
@@ -60,7 +70,7 @@ ServerMain::ServerMain()
         memcpy(my_s_bytes, &m_listProfile.convertToShortArray()[0], sizeof(detail));
 #endif
 
-#ifndef TEST_READ_SHM
+#ifdef TEST_READ_SHM
         auto vec = m_listProfile.convertToShortArray();
         shmManager.writeShm(vec.data(), vec.size());
         for (int i = 0; i < 30; i++) {
@@ -85,12 +95,14 @@ ServerMain::ServerMain()
         }
 #endif
 
-#ifndef TEST_ACK
+#ifdef TEST_ACK
         cout << "Sending message:" << buffer << endl;;
+        cout << " >>>>> m_queue: " << mqueue << endl;
         if (mq_send(mqueue, buffer, attr.mq_msgsize, 0) == -1)
         {
             perror("failed to send to Server");
         }
+        cout << " >>>>> m_queue: " << mqueue << endl;
     }
 #endif
     // close message

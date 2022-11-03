@@ -21,8 +21,9 @@ public:
     MMESSAGE convertCharToMsg(char *msg);
 
 void openQueue(char *mqPath);
-    MMESSAGE createMessage(const int id, const char* content);
+    void createMessage(const int id, const char* content);
     void sendMQueue(const MMESSAGE &msg);
+    void sendMQueue();
     void setInterruptHandler();
     void receiveMQueue();
     void closeAndDeleteMQueue();
