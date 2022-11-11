@@ -31,6 +31,7 @@ Item {
 
             model: detailProfileModel.skillList
             delegate: DetailSkills {
+                width: listSkills.width
                 skillId: model.id
                 skillName: model.name
                 skillPoint: model.point
@@ -71,7 +72,7 @@ Item {
                 pixelSize: 24
                 bold: true
             }
-            text: "Your name!!!"
+            text: detailProfileModel.name//"Your name!!!"
         }
     }
 

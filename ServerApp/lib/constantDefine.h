@@ -26,7 +26,7 @@
 #define MQ_PATH_CLIENT_ADMIN "/MQUEUE-ADMIN"
 
 
-#define KEY_SHM 0x01
+#define KEY_SHM 0x02
 #define SEGMENT_SIZE 1024 // 256 bytes or need larger?
 #define NAME_SHM "/dev/shm"
 
@@ -75,7 +75,9 @@ namespace Server {
         void updateFromSerializeMapSkill(char *in, int size) {
             // std::string s(in,size);
             char* ptr = nullptr;
-            ptr = strtok(&in[0], ",");
+            char loadCharptr[size-2];
+            strncpy(loadCharptr, in+1, size-2);
+            ptr = strtok(&loadCharptr[0], ",");
             int got = 0;
             while (ptr != nullptr) {
                 std::cout << ptr << std::endl;

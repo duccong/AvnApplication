@@ -43,7 +43,10 @@ void ServerInterface::getProfileDetailSync(Server::DetailProfile &profile, int i
     if (m_shmManager && m_mqManager ) {
         qDebug() << "getProfileListSync";
         MMESSAGE msg;
-        m_mqManager->createMessage(1, GET_PROFILE_DETAIL_SYNC);
+        // char integer_string[4];
+        // sprintf(integer_string, "%d", id);
+
+        m_mqManager->createMessage(id, GET_PROFILE_DETAIL_SYNC);
         // m_mqManager->createMessage(1, GET_PROFILE_LIST_SYNC);
         m_mqManager->sendMQueue();
         m_mqManager->setInterruptHandler();

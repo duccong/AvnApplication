@@ -107,10 +107,12 @@ Item {
         anchors.centerIn: parent
 
         totalIndex: 360
-        isAnimation: true
+        isAnimation: false
     }
 
     Component.onCompleted: {
         console.log("listView: onCompleted")
+        circleProgress.isAnimation = true
+        // appMain.qmlCommand(permissionCmd, "refresh")
     }
 }

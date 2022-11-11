@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.12
 import "../common"
 
 Item {
-    width: parent.width
+    width: parent.parent.width
     height: 50
     // anchors.verticalCenter: parent.verticalCenter
     property alias skillId: skillImg.skillId

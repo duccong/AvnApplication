@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "skilllistmodel.h"
+#include "QDebug"
 
 class DetailProfileModel : public QObject
 {

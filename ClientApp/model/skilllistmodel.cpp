@@ -13,8 +13,12 @@ void SkillListModel::addData(const SkillModel &model)
 
 void SkillListModel::updateListData(const QList<SkillModel> &model)
 {
+    qDebug() << "model size:" << model.size();
     m_skillList.clear();
-    m_skillList = model;
+    foreach (SkillModel s, model) {
+        m_skillList.append(s);
+    }
+    // m_skillList = model;
     emit layoutChanged();
 }
 

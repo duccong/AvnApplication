@@ -34,7 +34,7 @@ void MyFilterProxyModel::itemClicked(int _index)
     qDebug() << profile.serializeMapSkill().c_str();
     // m_profileListModel->updateProfileListAt(profile, 0);
     QString name = sourceModel()->data(mapToSource(index(_index,0)), ProfileListModel::Name).toString();
-    qDebug() << name;
+    qDebug() << "name: " << name;
     m_detailProfileModel->setName(name);
     QList<SkillModel> skillList;
     qDebug() << profile.mapSkill.size();

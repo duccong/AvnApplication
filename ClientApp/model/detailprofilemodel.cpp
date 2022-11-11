@@ -13,8 +13,10 @@ const QString &DetailProfileModel::name() const
 
 void DetailProfileModel::setName(const QString &newName)
 {
+    qDebug() << "setName: " << newName;
     if (m_name == newName)
         return;
+    qDebug() << "setName to: " << newName;
     m_name = newName;
     SkillModel s(AppDefines::E_SKILL_OPENGL, 4);
     SkillModel s1(AppDefines::E_SKILL_ASSEMBLY, 1);

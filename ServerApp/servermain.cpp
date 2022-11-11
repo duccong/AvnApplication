@@ -16,8 +16,19 @@ ServerMain::ServerMain()
             cout << " >>>> GET LIST PROFILE LIST SYNC" << endl;
             mqueueManager.createMessage(1, MMESSAGE_RESPONSE_OK);
             // write to SHM
+            ShmManager shmManager;
+            //prepare data to sharemem;
+            // char *sByte = new char(m_sSharedProfileList.size() + 1);
+            // strcpy(sByte, m_sSharedProfileList.c_str());
+
+            ShortDetailProfile detail[m_listProfile.size()];
+            // memcpy(detail, m_listProfile.convertToArray(), sizeof(detail));
+            char my_s_bytes[sizeof(detail)];
+            // char *sByte = new char(sizeof(my_s_bytes));
+            // memcpy(my_s_bytes, &m_listProfile, sizeof(my_s_bytes));
+            memcpy(my_s_bytes, &m_listProfile.convertToShortArray()[0], sizeof(detail));
         } else if (strncmp(GET_PROFILE_DETAIL_SYNC, msg.content, sizeof(GET_PROFILE_DETAIL_SYNC)) == 0) {
-            cout << " >>>> GET LIST PROFILE DETAIL SYNC" << endl;
+            cout << " >>>> GET LIST PROFILE DETAIL SYNC at" << msg.id << endl;
             // check ID
             int id = 0;
             // Prepare msg content;
@@ -37,7 +48,6 @@ ServerMain::ServerMain()
             cout << " >>>> TBD ... " << endl;
             mqueueManager.createMessage(1, MMESSAGE_RESPONSE_OK);
         }
-
         mqueueManager.sendMQueue();
         mqueueManager.setInterruptHandler();
     }
@@ -64,7 +74,7 @@ ServerMain::ServerMain()
     cout << " >>>>> m_queue: " << mqueue << endl;
 
     // recerve message
-#ifdef TEST_WAIT_RECV_MSG
+#ifndef TEST_WAIT_RECV_MSG
     while (1) {
         cout << "Waiting for message" << endl;
     cout << " >>>>> m_queue: " << mqueue << endl;
@@ -83,7 +93,7 @@ ServerMain::ServerMain()
         }
 #endif
 
-#ifdef TEST_WRITE_SHM
+#ifndef TEST_WRITE_SHM
         ShmManager shmManager;
         //prepare data to sharemem;
         // char *sByte = new char(m_sSharedProfileList.size() + 1);
@@ -97,7 +107,7 @@ ServerMain::ServerMain()
         memcpy(my_s_bytes, &m_listProfile.convertToShortArray()[0], sizeof(detail));
 #endif
 
-#ifdef TEST_READ_SHM
+#ifndef TEST_READ_SHM
         auto vec = m_listProfile.convertToShortArray();
         shmManager.writeShm(vec.data(), vec.size());
         for (int i = 0; i < 30; i++) {
@@ -122,7 +132,7 @@ ServerMain::ServerMain()
         }
 #endif
 
-#ifdef TEST_ACK
+#ifndef TEST_ACK
         cout << "Sending message:" << buffer << endl;;
         cout << " >>>>> m_queue: " << mqueue << endl;
         if (mq_send(mqueue, buffer, attr.mq_msgsize, 0) == -1)

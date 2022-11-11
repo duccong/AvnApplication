@@ -4,6 +4,7 @@
 #include <QAbstractListModel>
 #include <QObject>
 #include "../utils/appdefines.h"
+#include "QDebug"
 
 class SkillModel {
 private:
