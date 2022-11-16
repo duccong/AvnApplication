@@ -99,3 +99,8 @@ void ProfileListModel::updateProfileListAt(const Server::DetailProfile &detailPr
     // m_profileList.at(0)
     // emit dataChanged(index(row), index(row));
 }
+
+void ProfileListModel::refreshLayoutProfileList()
+{
+    emit layoutChanged();
+}

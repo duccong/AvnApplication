@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.12
 import "qmlSource/common"
 
 Window {
-    width: 540
+    width: 1080
     height: 810
     visible: true
     title: qsTr("AVN applications")
@@ -14,7 +14,8 @@ Window {
     property string permissionCmd: isAdmin ? "admin" : "user" // TODO: move it to model
 
     ColumnLayout {
-        anchors.fill: parent
+        width: 540
+        height: 810
         Loader {
             id: loaderDetail
             source: "qrc:/qmlSource/components/DetailProfile.qml"
@@ -43,26 +44,63 @@ Window {
 
     Rectangle {
         id: loadingScreen
+        // visible: false
         anchors.fill: parent
         color: "BLUE"
         opacity: 0.6
         Column {
             BorderButton {
-                content.text: "USER"
+                content.text: "START"
                 onMouseClicked: {
                     loadingScreen.visible = false
                 }
             }
 
-            BorderButton {
-                content.text: "ADMIN"
-                onMouseClicked: {
-                    isAdmin = true
-                    loadingScreen.visible = false
-                }
-            }
+            // BorderButton {
+                // content.text: "ADMIN"
+                // onMouseClicked: {
+                    // isAdmin = true
+                    // loadingScreen.visible = false
+                // }
+            // }
         }
 
     }
 
+    Rectangle {
+        id: mapView
+        Nulo {
+
+        }
+        width: 540
+        height: 810
+        anchors.right: parent.right
+        Repeater {
+            Nulo {
+
+            }
+            anchors.fill: parent
+            model: profileListModel
+            // model: filteredModel//profileListModel
+            delegate: Text {
+                id: item
+                width: 70
+                height: 70
+                font.pixelSize: 12
+                text: model.name
+                x: getRand(mapView.width - item.width)
+                y: getRand(mapView.height - item.height)
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        container.itemClicked(index)
+                    }
+                }
+            }
+        }
+    }
+
+    function getRand(max) {
+        return Math.floor(Math.random() * max)
+    }
 }

@@ -62,6 +62,7 @@ public:
     void setProfileList(const QList<ProfileModel> &newProfileList);
     void setProfileList(const Server::ListProfile &newProfileList);
     void updateProfileListAt(const Server::DetailProfile &detailProfile, int row);
+    void refreshLayoutProfileList();
 
 protected:
     QHash<int, QByteArray> roleNames() const;

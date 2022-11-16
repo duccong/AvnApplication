@@ -16,7 +16,7 @@ void AppMain::initialize()
     // Init model
     m_profileListModel = new ProfileListModel();
 
-#ifdef TEST_MODEL
+#ifndef TEST_MODEL
     ProfileModel a(5, "5 five", 5);
     ProfileModel b(3, "3 three", 3);
     ProfileModel c(6, "six two", 6);
@@ -78,10 +78,14 @@ void AppMain::qmlCommand(QVariant _cmd, QVariant _opt)
     qDebug() << "cmd: " << cmd << " - opt: " << opt;
     if (cmd == "user") {
         if (opt == "refresh") {
+
+#ifdef INLCUDE_SERVICE
             // m_service->requestGetListProfile();
             Server::ListProfile profiles;
             ServerInterface::instance()->getProfileListSync(profiles, -1);
             m_profileListModel->setProfileList(profiles);
+#endif
+            m_profileListModel->refreshLayoutProfileList();
         }
     } else if (cmd == "admin") {
 
