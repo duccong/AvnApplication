@@ -69,12 +69,35 @@ Window {
 
     Rectangle {
         id: mapView
-        Nulo {
-
-        }
+        clip: true
         width: 540
         height: 810
         anchors.right: parent.right
+
+        DrawArc {
+            id: hightlightView
+            Nulo {
+
+            }
+
+            opacity: 0.5
+            x: mapView.width/2
+            y: mapView.height/2
+            width: parent.width
+            height: parent.height
+            size: height
+            totalIndex: 360
+            start: 0
+            end: 30 * 2
+            RotationAnimation {
+                id: animationHightLight
+                target: hightlightView
+                duration: 3000
+                running: true
+                // direction: RotationAnimation.Counterclockwise
+            }
+        }
+
         Repeater {
             Nulo {
 

@@ -13,6 +13,9 @@ Item {
     property real loop: duration/60
     property real step: 2 / loop
     visible: isAnimation
+    property bool drawPie: false
+    property bool isFill: false
+    property bool isRepeat: false
 
     // opacity: isAnimation ? 1 : 0
     // Behavior on opacity {PropertyAnimation {duration: container.duration/2}}
@@ -44,9 +47,16 @@ Item {
             if (count > loop - 1) {
                 count = -1
                 // container.end = container.start
-                timer3s.stop()
+                if (!isRepeat) {
+                    timer3s.stop()
+                }
+
             }
             container.end += step
+            if (drawPie) {
+                container.start = container.end - step
+            }
+
             canvas.requestPaint()
         }
     }
@@ -79,14 +89,21 @@ Item {
             var centreY = height / 2
 
             ctx.beginPath();
-            ctx.strokeStyle = bgColor
-            ctx.lineWidth = 10
+            // ctx.strokeStyle = bgColor
+            // ctx.lineWidth = 10
             // ctx.beginPath()
             // ctx.moveTo(centreX, centreY)
             ctx.arc(centreX, centreY, size, Math.PI * start, Math.PI * end, false)
-            // ctx.lineTo(centreX, centreY)
+            // ctx.arc(centreX, centreY, size, 0, Math.PI * end, false)
+            if (drawPie) {
+                ctx.lineTo(centreX, centreY)
+            }
+
             ctx.stroke()
-            // ctx.fill()
+            if (isFill) {
+                ctx.fillStyle = bgColor
+                ctx.fill()
+            }
         }
     }
 

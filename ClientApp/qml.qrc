@@ -24,5 +24,6 @@
         <file>imageSource/icons8.png</file>
         <file>imageSource/icons-done.png</file>
         <file>imageSource/icons-close.png</file>
+        <file>qmlSource/common/DrawArc.qml</file>
     </qresource>
 </RCC>
