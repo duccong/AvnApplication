@@ -76,24 +76,27 @@ Window {
 
         DrawArc {
             id: hightlightView
-            Nulo {
+            // Nulo {
 
-            }
+            // }
 
             opacity: 0.5
-            x: mapView.width/2
-            y: mapView.height/2
-            width: parent.width
-            height: parent.height
-            size: height
+            anchors.centerIn: parent
+            height: parent.height *2
+            width: height *2
+            size: height * 3
             totalIndex: 360
             start: 0
             end: 30 * 2
+
             RotationAnimation {
                 id: animationHightLight
                 target: hightlightView
-                duration: 3000
+                duration: 30000
                 running: true
+                from: 0
+                to: 360
+                loops: Animation.Infinite
                 // direction: RotationAnimation.Counterclockwise
             }
         }

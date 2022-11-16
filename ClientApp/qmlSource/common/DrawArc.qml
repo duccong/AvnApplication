@@ -25,8 +25,8 @@ Item {
             var ctx = getContext("2d");
             ctx.reset();
 
-            var centreX = 0; //width / 2;
-            var centreY = 0; //height / 2;
+            var centreX = width / 2;
+            var centreY = height / 2;
 
             ctx.beginPath();
             ctx.fillStyle = bgColor;
