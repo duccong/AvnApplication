@@ -5,7 +5,9 @@
 #include <QObject>
 #include <QDebug>
 #include "profilelistmodel.h"
+#ifndef APP_ON_WINDOW
 #include "interface/serverinterface.h"
+#endif
 #include "model/detailprofilemodel.h"
 
 class MyFilterProxyModel : public QSortFilterProxyModel

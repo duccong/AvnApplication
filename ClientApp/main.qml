@@ -92,7 +92,7 @@ Window {
             RotationAnimation {
                 id: animationHightLight
                 target: hightlightView
-                duration: 30000
+                duration: 3000
                 running: true
                 from: 0
                 to: 360

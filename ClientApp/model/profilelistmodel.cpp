@@ -83,6 +83,7 @@ void ProfileListModel::setProfileList(const QList<ProfileModel> &newProfileList)
     emit layoutChanged();
 }
 
+#ifndef APP_ON_WINDOW
 void ProfileListModel::setProfileList(const Server::ListProfile &newProfileList)
 {
     m_profileList.clear();
@@ -99,7 +100,7 @@ void ProfileListModel::updateProfileListAt(const Server::DetailProfile &detailPr
     // m_profileList.at(0)
     // emit dataChanged(index(row), index(row));
 }
-
+#endif
 void ProfileListModel::refreshLayoutProfileList()
 {
     emit layoutChanged();

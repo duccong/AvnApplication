@@ -6,10 +6,12 @@
 #include <QVariant>
 #include <model/profilelistmodel.h>
 #include <model/myfilterproxymodel.h>
+#ifndef APP_ON_WINDOW
 #include <../ServerApp/lib/constantDefine.h>
 #include <../ServerApp/lib/mqmanager.h>
 #include <../ServerApp/lib/shmmanager.h>
 #include <interface/serverinterface.h>
+#endif
 #include <model/detailprofilemodel.h>
 #include <utils/appdefines.h>
 

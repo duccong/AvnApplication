@@ -10,6 +10,7 @@ class UtilsApp
 public:
     UtilsApp();
 
+#ifndef APP_ON_WINDOW
     static void printfProfile(const Server::DetailProfile &profile) {
         cout << " =================== \n Id: " << profile.id
              << " - " << "name: " << profile.name
@@ -19,6 +20,7 @@ public:
         }
         cout << " ==================="<< endl;
     }
+#endif
 };
 
 #endif // UTILSAPP_H

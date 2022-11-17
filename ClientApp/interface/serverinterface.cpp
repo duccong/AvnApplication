@@ -7,6 +7,7 @@ ServerInterface::ServerInterface(QObject *parent) : QObject(parent)
     initShm();
 }
 
+#ifndef APP_ON_WINDOW
 void ServerInterface::getProfileListSync(Server::ListProfile &profile, int id)
 {
     if (m_shmManager && m_mqManager ) {
@@ -62,16 +63,21 @@ void ServerInterface::requestGetListProfile()
     qDebug() << "requestGetListProfile";
 
 }
-
+#endif
 void ServerInterface::initConnection()
 {
     qDebug() << "##### Init connection";
+
+#ifndef APP_ON_WINDOW
     m_mqManager = new MQueueManager();
     m_mqManager->openQueue(MQ_PATH_CLIENT_USER);
+#endif
 }
 
 void ServerInterface::initShm()
 {
     qDebug() << "#### Init Shm";
+#ifndef APP_ON_WINDOW
     m_shmManager = new ShmManager();
+#endif
 }

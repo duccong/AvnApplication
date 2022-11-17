@@ -5,8 +5,8 @@ QT += quick
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        ../ServerApp/lib/mqmanager.cpp \
-        ../ServerApp/lib/shmmanager.cpp \
+        # ../ServerApp/lib/mqmanager.cpp \
+        # ../ServerApp/lib/shmmanager.cpp \
         appmain.cpp \
         interface/serverinterface.cpp \
         main.cpp \
@@ -19,9 +19,12 @@ SOURCES += \
 
 RESOURCES += qml.qrc
 
-LIBS += -lpthread \
-        -lrt
+LIBS += -lpthread
 
+linux {
+    LIBS += -lrt
+}
+DEFINES += APP_ON_WINDOW
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 
@@ -55,9 +58,9 @@ DISTFILES += \
     imageSource/icons8.png
 
 HEADERS += \
-    ../ServerApp/lib/constantDefine.h \
-    ../ServerApp/lib/mqmanager.h \
-    ../ServerApp/lib/shmmanager.h \
+    # ../ServerApp/lib/constantDefine.h \
+    # ../ServerApp/lib/mqmanager.h \
+    # ../ServerApp/lib/shmmanager.h \
     appmain.h \
     interface/serverinterface.h \
     model/detailprofilemodel.h \

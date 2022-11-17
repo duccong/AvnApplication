@@ -27,6 +27,7 @@ void MyFilterProxyModel::itemClicked(int _index)
     int row = mapToSource(index(_index, 0)).row();
     qDebug() << "Item clicked: " << _index << " at model " << row;
     printDetail(_index);
+#ifndef APP_ON_WINDOW
     Server::DetailProfile profile;
     ServerInterface::instance()->getProfileDetailSync(profile, 0);
     // ServerInterface::instance()->getProfileListSync(profile, row);
@@ -44,6 +45,7 @@ void MyFilterProxyModel::itemClicked(int _index)
     }
     qDebug() << skillList.size();
     m_detailProfileModel->skillList()->updateListData(skillList);
+#endif
 }
 
 void MyFilterProxyModel::setFocusDetailModel(DetailProfileModel *model)

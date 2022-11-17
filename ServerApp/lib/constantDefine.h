@@ -3,11 +3,13 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <fcntl.h>
-#include <mqueue.h>
 #include <unistd.h>
 #include <string.h>
+#ifndef APP_ON_WINDOW
+#include <mqueue.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#endif
 #include <errno.h>
 #include <map>
 #include <list>

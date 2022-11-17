@@ -3,9 +3,11 @@
 
 #include <QObject>
 #include <QDebug>
+#ifndef APP_ON_WINDOW
 #include <../ServerApp/lib/constantDefine.h>
 #include <../ServerApp/lib/mqmanager.h>
 #include <../ServerApp/lib/shmmanager.h>
+#endif
 
 class ServerInterface : public QObject
 {
@@ -22,18 +24,20 @@ public:
         return iServer;
     }
 
+#ifndef APP_ON_WINDOW
     void getProfileListSync(Server::ListProfile &profile, int id);
     void getProfileDetailSync(Server::DetailProfile &profile, int id );
     void requestGetListProfile();
-
+#endif
 signals:
 
 private:
+#ifndef APP_ON_WINDOW
     MQueueManager *m_mqManager = nullptr;
     ShmManager *m_shmManager = nullptr;
+#endif
     void initConnection();
     void initShm();
-
 };
 
 #endif // SERVERINTERFACE_H

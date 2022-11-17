@@ -60,8 +60,11 @@ public:
 
     const QList<ProfileModel> &profileList() const;
     void setProfileList(const QList<ProfileModel> &newProfileList);
+
+#ifndef APP_ON_WINDOW
     void setProfileList(const Server::ListProfile &newProfileList);
     void updateProfileListAt(const Server::DetailProfile &detailProfile, int row);
+#endif
     void refreshLayoutProfileList();
 
 protected:
