@@ -78,6 +78,7 @@ const QList<ProfileModel> &ProfileListModel::profileList() const
 
 void ProfileListModel::setProfileList(const QList<ProfileModel> &newProfileList)
 {
+    qDebug() << "Set ProfileList";
     m_profileList.clear();
     m_profileList = newProfileList;
     emit layoutChanged();
@@ -103,5 +104,6 @@ void ProfileListModel::updateProfileListAt(const Server::DetailProfile &detailPr
 #endif
 void ProfileListModel::refreshLayoutProfileList()
 {
+    qDebug() << "RefreshProfielList" ;
     emit layoutChanged();
 }

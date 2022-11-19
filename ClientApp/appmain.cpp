@@ -17,18 +17,15 @@ void AppMain::initialize()
     m_profileListModel = new ProfileListModel();
 
 #ifndef TEST_MODEL
-    ProfileModel a(5, "5 five", 5);
-    ProfileModel b(3, "3 three", 3);
-    ProfileModel c(6, "six two", 6);
-    ProfileModel d(4, "4 four", 4);
-    ProfileModel e(4, "e4 four", 2);
-    ProfileModel f(4, "f4 four", 1);
-    m_profileListModel->addData(a);
-    m_profileListModel->addData(b);
-    m_profileListModel->addData(c);
-    m_profileListModel->addData(d);
-    m_profileListModel->addData(e);
-    m_profileListModel->addData(f);
+    for (int i = 0 ; i < 100; i++) {
+        if (i % 2) {
+            ProfileModel a(i, QString("WHO %1").arg(i), i%5);
+            m_profileListModel->addData(a);
+        } else {
+            ProfileModel a(i, QString("%1 WHO").arg(i), i%5);
+            m_profileListModel->addData(a);
+        }
+    }
 #endif
 
     m_myFilterProxyModel = new MyFilterProxyModel();
